@@ -26,7 +26,7 @@ export default defineNuxtConfig({
             'Run a cozy dungeon-town shop, shape spawns as secret DM, trade everything, and guide delvers\' fates.',
         },
       ],
-      link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+      link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
     },
   },
 

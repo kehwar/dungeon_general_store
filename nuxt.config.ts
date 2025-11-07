@@ -23,7 +23,7 @@ export default defineNuxtConfig({
         {
           name: 'description',
           content:
-            "Run a cozy dungeon-town shop, shape spawns as secret DM, trade everything, and guide delvers' fates.",
+            'Run a cozy dungeon-town shop, shape spawns as secret DM, trade everything, and guide delvers\' fates.',
         },
       ],
       link: [{ rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }],
@@ -51,7 +51,7 @@ export default defineNuxtConfig({
       name: 'Dungeon General Store',
       short_name: 'DGS',
       description:
-        "Run a cozy dungeon-town shop, shape spawns as secret DM, trade everything, and guide delvers' fates.",
+        'Run a cozy dungeon-town shop, shape spawns as secret DM, trade everything, and guide delvers\' fates.',
       theme_color: '#2c1810',
       background_color: '#1a0f0a',
       display: 'standalone',

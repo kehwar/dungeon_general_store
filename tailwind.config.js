@@ -13,10 +13,10 @@ export default {
       colors: {
         'dungeon-dark': '#1a0f0a',
         'dungeon-brown': '#2c1810',
-        'wood': '#6b4423',
-        'gold': '#ffd700',
-        'silver': '#c0c0c0',
-        'parchment': '#f5f5dc',
+        wood: '#6b4423',
+        gold: '#ffd700',
+        silver: '#c0c0c0',
+        parchment: '#f5f5dc',
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', 'sans-serif'],

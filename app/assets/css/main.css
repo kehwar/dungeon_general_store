@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-dungeon-dark: #1a0f0a;
+  --color-dungeon-brown: #2c1810;
+  --color-wood: #6b4423;
+  --color-gold: #ffd700;
+  --color-silver: #c0c0c0;
+  --color-text: #f5f5dc;
+}
+
+body {
+  @apply bg-[var(--color-dungeon-dark)] text-[var(--color-text)] font-sans;
+}
+
+#game-container {
+  @apply w-full h-screen flex items-center justify-center;
+}

@@ -1,0 +1,45 @@
+# Nuxt
+.nuxt
+.output
+.data
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules
+*.log*
+.DS_Store
+
+# Build
+dist
+.cache
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+*.local
+
+# Firebase
+.firebase
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# PWA
+sw.js
+sw.js.map
+workbox-*.js
+workbox-*.js.map

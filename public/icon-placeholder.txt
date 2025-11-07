@@ -1,0 +1,10 @@
+# PWA Icon Placeholder
+
+This is a placeholder for PWA icons. 
+Replace icon-192x192.png and icon-512x512.png with actual game icons.
+
+Recommended:
+- Use a simple shop/dungeon theme icon
+- Ensure icons are square (192x192 and 512x512)
+- Use PNG format with transparency
+- Follow PWA icon guidelines

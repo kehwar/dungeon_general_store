@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-  <rect width="512" height="512" fill="#2c1810"/>
-  <rect x="50" y="50" width="412" height="412" fill="#1a0f0a" stroke="#6b4423" stroke-width="8"/>
-  <text x="256" y="200" font-family="Arial" font-size="120" fill="#ffd700" text-anchor="middle" font-weight="bold">DGS</text>
-  <text x="256" y="320" font-family="Arial" font-size="48" fill="#f5f5dc" text-anchor="middle">Dungeon</text>
-  <text x="256" y="370" font-family="Arial" font-size="48" fill="#f5f5dc" text-anchor="middle">General Store</text>
-</svg>

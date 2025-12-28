@@ -4,12 +4,15 @@
 
 Dungeon General Store is a minimalist, input-driven management game where players run a cozy dungeon-town shop, shape spawns as a secret DM, trade everything, and guide delvers' fates.
 
+**Architecture Philosophy**: This game is designed as **offline-first**, with all core functionality working without internet connectivity. While multiplayer features are planned for the future, the architecture is designed with state streaming and synchronization in mind to make future multiplayer integration seamless.
+
 ## Technology Stack
 
 - **Framework**: Nuxt 4 (Vue 3-based full-stack framework)
 - **Game Engine**: Phaser 3 (for web game rendering and game logic)
-- **Database**: Firebase Firestore (NoSQL cloud database)
-- **PWA**: PWABuilder via @vite-pwa/nuxt (Progressive Web App capabilities)
+- **Local Storage**: IndexedDB/LocalStorage (primary game state storage)
+- **Optional Cloud Sync**: Firebase Firestore (optional cloud backup and future multiplayer state sync)
+- **PWA**: PWABuilder via @vite-pwa/nuxt (Progressive Web App capabilities for offline-first experience)
 - **Language**: TypeScript (strict mode)
 - **Package Manager**: npm
 
@@ -47,18 +50,27 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Set up base CSS with theme variables
 - [ ] Create layout components
 
-#### 2.2 Firebase Integration
-- [ ] Install Firebase SDK (v11+)
-- [ ] Create Firebase client plugin
-- [ ] Set up environment variables template (.env.example)
-- [ ] Configure Firestore initialization
-- [ ] Design initial Firestore collections schema:
+#### 2.2 Local Storage System
+- [ ] Set up IndexedDB wrapper/abstraction layer
+- [ ] Design game state schema with serialization support
+- [ ] Create local storage utilities with versioning
+- [ ] Implement state import/export for backup
+- [ ] Design data structures for easy state diffing (multiplayer-ready)
+- [ ] Initial collections/stores:
   - shops (shop state, inventory, reputation)
   - delvers (NPC data, traits, history)
   - items (item catalog with properties)
   - runs (dungeon run records)
 
-#### 2.3 PWA Configuration
+#### 2.3 Optional Firebase Integration (Future Multiplayer)
+- [ ] Install Firebase SDK (v11+) as optional dependency
+- [ ] Create Firebase client plugin (lazy-loaded)
+- [ ] Set up environment variables template (.env.example)
+- [ ] Configure optional Firestore sync layer
+- [ ] Design state synchronization strategy for future multiplayer
+- [ ] Implement cloud backup feature (opt-in)
+
+#### 2.4 PWA Configuration
 - [ ] Install and configure @vite-pwa/nuxt
 - [ ] Create PWA manifest with app metadata
 - [ ] Configure service worker for offline support
@@ -92,7 +104,8 @@ Dungeon General Store is a minimalist, input-driven management game where player
 #### 4.1 Inventory System
 - [ ] Design item type system (weapons, armor, potions, etc.)
 - [ ] Create Item class/interface with properties
-- [ ] Implement inventory storage (Firestore + local state)
+- [ ] Implement inventory storage (IndexedDB + local state)
+- [ ] Add optional cloud sync for inventory
 - [ ] Build inventory UI component
 - [ ] Add item sorting and filtering
 
@@ -160,8 +173,10 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Implement day/night cycle or time system
 - [ ] Add customer visit patterns
 - [ ] Create event system (random/scheduled)
-- [ ] Build save/load system (Firestore)
-- [ ] Add auto-save functionality
+- [ ] Build save/load system (IndexedDB primary)
+- [ ] Add auto-save functionality (local)
+- [ ] Implement optional cloud backup
+- [ ] Design state snapshot system for future multiplayer sync
 
 #### 7.2 UI/UX Polish
 - [ ] Create consistent UI theme
@@ -171,20 +186,23 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create tutorial/onboarding flow
 
 #### 7.3 Optimization
-- [ ] Optimize Firestore queries
-- [ ] Implement proper caching strategies
+- [ ] Optimize IndexedDB queries
+- [ ] Implement proper caching strategies for game assets
 - [ ] Add code splitting for routes
 - [ ] Optimize asset loading
 - [ ] Test and improve mobile performance
+- [ ] Ensure offline performance is optimal
 
 ### Phase 8: Testing & Deployment (Week 12)
 
 #### 8.1 Testing
 - [ ] Write unit tests for game logic
 - [ ] Create component tests for UI
-- [ ] Add integration tests for Firestore
+- [ ] Add integration tests for local storage
+- [ ] Test offline functionality thoroughly
 - [ ] Perform manual gameplay testing
 - [ ] Test PWA functionality offline
+- [ ] Verify optional cloud sync works correctly
 
 #### 8.2 Documentation
 - [ ] Write comprehensive README
@@ -194,11 +212,12 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create contributing guide
 
 #### 8.3 Deployment
-- [ ] Set up Firebase hosting (or alternative)
+- [ ] Set up static hosting (Netlify, Vercel, or GitHub Pages)
 - [ ] Configure production environment
-- [ ] Set up monitoring and analytics
+- [ ] Set up monitoring and analytics (privacy-respecting)
 - [ ] Create deployment pipeline
 - [ ] Perform final security audit
+- [ ] Configure optional Firebase backend for cloud features
 
 ## Project Structure
 
@@ -223,7 +242,8 @@ dungeon_general_store/
 │   │   ├── useGame.ts            # Game lifecycle
 │   │   ├── useShopInventory.ts   # Inventory management
 │   │   ├── useDelvers.ts         # Delver state
-│   │   └── useFirestore.ts       # Firestore helpers
+│   │   ├── useLocalStorage.ts    # IndexedDB helpers
+│   │   └── useCloudSync.ts       # Optional cloud sync
 │   ├── game/
 │   │   ├── config.ts             # Phaser configuration
 │   │   ├── scenes/
@@ -238,7 +258,8 @@ dungeon_general_store/
 │   │   └── systems/
 │   │       ├── TradingSystem.ts  # Buy/sell logic
 │   │       ├── SpawnSystem.ts    # DM spawn control
-│   │       └── QuestSystem.ts    # Quest management
+│   │       ├── QuestSystem.ts    # Quest management
+│   │       └── StateManager.ts   # State sync/diff system
 │   ├── layouts/
 │   │   └── default.vue           # Main layout
 │   ├── pages/
@@ -246,20 +267,21 @@ dungeon_general_store/
 │   │   ├── game.vue              # Main game view
 │   │   └── settings.vue          # Settings page
 │   ├── plugins/
-│   │   └── firebase.client.ts    # Firebase initialization
+│   │   └── firebase.client.ts    # Optional Firebase initialization
 │   ├── types/
 │   │   ├── game.ts               # Game type definitions
 │   │   ├── shop.ts               # Shop types
 │   │   └── delver.ts             # Delver types
 │   └── utils/
 │       ├── calculations.ts       # Game calculations
-│       └── helpers.ts            # Utility functions
+│       ├── helpers.ts            # Utility functions
+│       └── storage.ts            # Storage abstraction layer
 ├── server/
 │   ├── api/
-│   │   ├── save.post.ts          # Save game endpoint
-│   │   └── load.get.ts           # Load game endpoint
+│   │   ├── save.post.ts          # Optional cloud save endpoint
+│   │   └── load.get.ts           # Optional cloud load endpoint
 │   └── utils/
-│       └── firestore-admin.ts    # Server-side Firestore
+│       └── firestore-admin.ts    # Optional server-side Firestore
 ├── public/
 │   ├── favicon.ico
 │   ├── icon-192x192.png          # PWA icon
@@ -292,6 +314,46 @@ dungeon_general_store/
 3. **Composition API**: Use Vue 3 Composition API with `<script setup>` syntax.
 4. **Responsive Design**: Ensure the game works on mobile and desktop.
 5. **Performance**: Optimize for web performance (lazy loading, code splitting).
+6. **Offline-First**: All core functionality must work without internet connectivity.
+7. **Multiplayer-Ready**: Design state management for easy streaming and synchronization.
+
+### Architecture Principles
+
+#### Offline-First Design
+
+The game must be fully functional offline. This is not a fallback mode - it's the primary mode of operation.
+
+- **Local Storage as Primary**: All game state is stored in IndexedDB/LocalStorage
+- **No Network Dependencies**: Core gameplay never requires network access
+- **Optional Cloud Features**: Cloud sync and multiplayer are opt-in enhancements
+- **Progressive Enhancement**: Online features enhance rather than enable gameplay
+
+#### Multiplayer-Ready Architecture
+
+While multiplayer is a future feature, design decisions should facilitate its eventual implementation:
+
+- **State Serialization**: All game state must be serializable to JSON
+- **Deterministic Logic**: Game logic should be deterministic for state replication
+- **Event Sourcing**: Consider event-based state changes for easier sync
+- **State Diffing**: Design state structure for efficient diff/patch operations
+- **Conflict Resolution**: Plan for eventual consistency patterns
+- **Timestamping**: Include timestamps on all state changes for ordering
+
+Example state structure:
+```typescript
+interface GameState {
+  version: number
+  timestamp: number
+  playerId: string
+  entities: {
+    shops: Record<string, Shop>
+    delvers: Record<string, Delver>
+    items: Record<string, Item>
+  }
+  events: GameEvent[]  // For event sourcing
+  checksum?: string    // For state validation
+}
+```
 
 ### Game Development
 
@@ -312,9 +374,11 @@ dungeon_general_store/
 #### Game State Management
 
 - Use composables for shared game state
-- Persist important state to Firestore
-- Keep local state for real-time interactions
-- Sync to Firestore on significant changes
+- Store all game state in IndexedDB for persistence
+- Keep reactive refs for real-time UI updates
+- Design state for easy serialization and deserialization
+- Implement state versioning for migrations
+- Add state snapshot/restore capabilities for save/load
 - Example composable pattern:
   ```typescript
   export function useShopInventory() {
@@ -323,15 +387,37 @@ dungeon_general_store/
     
     async function loadInventory() {
       loading.value = true
-      // Load from Firestore
+      // Load from IndexedDB
+      const stored = await db.get('inventory')
+      items.value = stored || []
       loading.value = false
     }
     
     async function saveInventory() {
-      // Save to Firestore
+      // Save to IndexedDB
+      await db.set('inventory', items.value)
+      
+      // Optionally sync to cloud if enabled
+      if (isCloudSyncEnabled()) {
+        await syncToCloud(items.value)
+      }
     }
     
-    return { items, loading, loadInventory, saveInventory }
+    // Create state snapshot for multiplayer sync
+    function createSnapshot() {
+      return {
+        timestamp: Date.now(),
+        items: JSON.parse(JSON.stringify(items.value))
+      }
+    }
+    
+    return { 
+      items, 
+      loading, 
+      loadInventory, 
+      saveInventory,
+      createSnapshot 
+    }
   }
   ```
 
@@ -342,29 +428,82 @@ dungeon_general_store/
 - Use keyboard shortcuts for common actions
 - Support touch gestures on mobile
 
-### Firebase/Firestore
+### Local Storage
+
+#### IndexedDB as Primary Storage
+
+Use IndexedDB for all game state persistence:
+
+```typescript
+// Good: Using IndexedDB wrapper
+interface StorageLayer {
+  get<T>(key: string): Promise<T | null>
+  set<T>(key: string, value: T): Promise<void>
+  delete(key: string): Promise<void>
+  clear(): Promise<void>
+}
+
+// Example implementation
+class GameStorage implements StorageLayer {
+  private db: IDBDatabase
+  
+  async get<T>(key: string): Promise<T | null> {
+    // IndexedDB get operation
+  }
+  
+  async set<T>(key: string, value: T): Promise<void> {
+    // IndexedDB set operation with versioning
+  }
+}
+```
+
+#### State Structure
+
+Design state for easy serialization and synchronization:
+
+```typescript
+// Good: Flat, serializable structure
+interface GameData {
+  shop: {
+    id: string
+    inventory: Item[]
+    gold: number
+    reputation: number
+    lastSaved: number
+  }
+  delvers: Record<string, {
+    id: string
+    name: string
+    stats: Stats
+    equipment: string[]
+    history: RunRecord[]
+    relationship: number
+  }>
+  metadata: {
+    version: number
+    playerId: string
+    lastModified: number
+  }
+}
+```
+
+### Firebase/Firestore (Optional)
+
+Firebase is **optional** and used only for:
+- Cloud backup (opt-in)
+- Future multiplayer state synchronization
+- Cross-device save sync
 
 #### Data Structure
 
-Design flat, denormalized collections for performance:
+When cloud sync is enabled, mirror local structure:
 
 ```typescript
-// Good: Flat structure
-shops/{shopId}
-  - inventory: Item[]
-  - gold: number
-  - reputation: number
-  - lastUpdated: timestamp
-
-delvers/{delverId}
-  - name: string
-  - stats: Stats
-  - equipment: string[]  // Item IDs
-  - history: RunRecord[]
-  - relationship: number
-
-// Avoid: Deep nesting
-shops/{shopId}/inventory/{itemId}  // Too granular
+// Firestore structure (when sync enabled)
+players/{playerId}/
+  - gameState: GameData
+  - lastSync: timestamp
+  - version: number
 ```
 
 #### Security
@@ -376,42 +515,190 @@ shops/{shopId}/inventory/{itemId}  // Too granular
   rules_version = '2';
   service cloud.firestore {
     match /databases/{database}/documents {
-      match /shops/{shopId} {
-        allow read: if request.auth != null;
-        allow write: if request.auth != null && request.auth.uid == shopId;
+      match /players/{playerId} {
+        allow read, write: if request.auth != null && request.auth.uid == playerId;
       }
     }
   }
   ```
 
-#### Real-time Updates
+#### Optional Cloud Sync
 
-- Use Firestore listeners for real-time game state
-- Handle offline scenarios gracefully
-- Implement optimistic updates for better UX
-- Clean up listeners on component unmount
+- Make cloud features completely optional
+- Game must work perfectly without Firebase
+- Lazy-load Firebase SDK only when needed
+- Provide clear UI for enabling/disabling sync
+- Handle offline scenarios gracefully (already offline by default)
+- Implement conflict resolution for sync conflicts
+
+Example sync pattern:
+```typescript
+// Only sync if explicitly enabled
+async function syncState(localState: GameState) {
+  if (!isCloudSyncEnabled() || !isOnline()) {
+    return // Skip sync, game continues normally
+  }
+  
+  try {
+    const cloudState = await fetchCloudState()
+    const merged = mergeStates(localState, cloudState)
+    await saveToCloud(merged)
+  } catch (error) {
+    // Sync failed, but game continues offline
+    console.warn('Cloud sync failed, continuing offline')
+  }
+}
 
 ### PWA Best Practices
 
-1. **Offline Support**: 
-   - Cache game assets for offline play
-   - Store game state locally and sync when online
-   - Provide clear offline indicators
+1. **Offline-First by Design**: 
+   - The game IS an offline application that happens to run in a browser
+   - All core features work without network connectivity
+   - Network is only used for optional cloud sync
+   - Cache ALL game assets for instant offline availability
+   - Store ALL game state locally (IndexedDB)
+   - No "offline mode" vs "online mode" - it's always offline-capable
 
 2. **Install Prompts**: 
    - Implement smart install prompts
    - Show after user engagement (e.g., after first session)
    - Make dismissible and non-intrusive
+   - Emphasize offline playability in install prompt
 
 3. **Service Worker**: 
    - Use Nuxt PWA module for service worker generation
-   - Configure caching strategies per asset type
-   - Implement background sync for saves
+   - Configure aggressive caching for all game assets
+   - Use Cache-First strategy for game resources
+   - Implement background sync only for optional cloud features
+   - Handle failed syncs gracefully
 
 4. **App Manifest**: 
    - Configure proper icons (192x192, 512x512)
    - Set theme colors matching game aesthetic
    - Use standalone display mode
+   - Emphasize offline capability in description
+
+### Multiplayer-Ready Architecture (Future)
+
+While multiplayer is not part of the current implementation, the architecture should facilitate future multiplayer features:
+
+#### State Design Patterns
+
+1. **Serializable State**:
+   - All game state must be JSON-serializable
+   - No circular references
+   - No functions stored in state
+   - Use plain objects and arrays
+
+2. **Deterministic Game Logic**:
+   - Same inputs should produce same outputs
+   - Avoid using `Math.random()` directly - use seeded RNG
+   - Timestamp-based logic should use synchronized time
+   - Make calculations reproducible
+
+3. **Event Sourcing**:
+   ```typescript
+   interface GameEvent {
+     id: string
+     type: string
+     timestamp: number
+     playerId: string
+     data: any
+     version: number
+   }
+   
+   // Store events for replay/sync
+   class EventStore {
+     private events: GameEvent[] = []
+     
+     addEvent(event: GameEvent) {
+       this.events.push(event)
+     }
+     
+     replayEvents(fromTimestamp: number): GameState {
+       // Rebuild state from events
+     }
+   }
+   ```
+
+4. **State Diffing and Patching**:
+   ```typescript
+   interface StateDiff {
+     timestamp: number
+     changes: {
+       path: string[]
+       oldValue: any
+       newValue: any
+     }[]
+   }
+   
+   function createDiff(oldState: GameState, newState: GameState): StateDiff {
+     // Generate minimal diff
+   }
+   
+   function applyPatch(state: GameState, diff: StateDiff): GameState {
+     // Apply diff to state
+   }
+   ```
+
+5. **Conflict Resolution Strategy**:
+   - Plan for Last-Write-Wins or Operational Transform
+   - Include version vectors or Lamport timestamps
+   - Design state to minimize conflicts
+   - Separate player-specific and shared state
+
+6. **State Validation**:
+   ```typescript
+   interface StateChecksum {
+     version: number
+     timestamp: number
+     hash: string
+   }
+   
+   function validateState(state: GameState, checksum: StateChecksum): boolean {
+     // Verify state integrity
+   }
+   ```
+
+#### Network Considerations
+
+- Design APIs for state streaming (WebSocket or Server-Sent Events)
+- Plan for bandwidth-efficient state sync (diffs, not full state)
+- Consider delta compression for state updates
+- Design for high latency scenarios (100-500ms)
+- Plan for temporary disconnections
+
+#### Example Multiplayer-Ready Structure
+
+```typescript
+// State designed for sync
+interface SyncableGameState {
+  // Metadata for sync
+  meta: {
+    version: number
+    lastModified: number
+    playerId: string
+    sessionId: string
+  }
+  
+  // Player-specific state (no conflicts)
+  player: {
+    shop: Shop
+    inventory: Item[]
+    decisions: DMDecision[]
+  }
+  
+  // Potentially shared state
+  world: {
+    delvers: Record<string, Delver>
+    economy: EconomyState
+    events: WorldEvent[]
+  }
+  
+  // Event log for replay
+  eventLog: GameEvent[]
+}
+```
 
 ### Testing
 
@@ -571,9 +858,12 @@ shops/{shopId}/inventory/{itemId}  // Too granular
     "nuxt": "^4.2.1",
     "vue": "^3.5.0",
     "phaser": "^3.87.0",
-    "firebase": "^11.0.2",
+    "idb": "^8.0.0",
     "@pinia/nuxt": "^0.5.5",
     "@vueuse/nuxt": "^11.2.0"
+  },
+  "optionalDependencies": {
+    "firebase": "^11.0.2"
   }
 }
 ```
@@ -659,9 +949,10 @@ shops/{shopId}/inventory/{itemId}  // Too granular
 ### Feature Requests
 1. Be explicit about game mechanics when requesting features
 2. Specify if changes affect game logic, UI, or both
-3. Mention if Firestore schema changes are needed
+3. Mention if local storage schema changes are needed
 4. Indicate if new assets or resources are required
-5. State if changes impact offline functionality
+5. State if changes impact offline functionality (they shouldn't!)
+6. Clarify if optional cloud sync is involved
 
 ### Code Generation
 - Request type-safe code with proper TypeScript types

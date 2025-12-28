@@ -1,7 +1,7 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2024-12-28',
-  
+
   // Using Nuxt 4 compatibility version as per project requirements
   // This enables new features and patterns that will be standard in Nuxt 4
   future: {
@@ -10,7 +10,7 @@ export default defineNuxtConfig({
 
   // Enable static site generation for GitHub Pages
   ssr: false,
-  
+
   // TypeScript configuration
   typescript: {
     strict: true,
@@ -30,9 +30,10 @@ export default defineNuxtConfig({
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { 
-          name: 'description', 
-          content: 'A minimalist, offline-first management game where you run a cozy dungeon-town shop' 
+        {
+          name: 'description',
+          content:
+            'A minimalist, offline-first management game where you run a cozy dungeon-town shop',
         },
       ],
     },

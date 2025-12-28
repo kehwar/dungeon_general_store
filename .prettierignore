@@ -1,0 +1,18 @@
+# Build outputs
+.output
+.nuxt
+.nitro
+.cache
+dist
+node_modules
+
+# Lock files
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Coverage
+coverage
+
+# Logs
+*.log

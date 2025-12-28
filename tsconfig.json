@@ -19,11 +19,5 @@
     "forceConsistentCasingInFileNames": true,
     "resolveJsonModule": true
   },
-  "exclude": [
-    "node_modules",
-    ".nuxt",
-    "dist",
-    ".output",
-    "vitest.config.ts"
-  ]
+  "exclude": ["node_modules", ".nuxt", "dist", ".output", "vitest.config.ts", "nuxt.config.ts"]
 }

@@ -23,8 +23,9 @@ Dungeon General Store is a minimalist, input-driven management game where player
 #### 1.1 Initial Setup
 - [ ] Initialize Nuxt 4 project with TypeScript
 - [ ] Configure package.json with all required dependencies
+- [ ] Configure Nuxt for static site generation (for GitHub Pages deployment)
 - [ ] Set up .gitignore for Node.js/Nuxt projects
-- [ ] Create basic project structure (app/, server/, public/ directories)
+- [ ] Create basic project structure (app/, public/ directories; server/ optional for custom backends)
 
 #### 1.2 Development Tools
 - [ ] Configure ESLint with Nuxt recommended settings
@@ -225,6 +226,8 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Document how users can set up their own Firebase/backend credentials (BYOB)
 
 ## Project Structure
+
+**Note**: The `server/` directory is optional and only needed if users want to implement custom backend endpoints for cloud sync. For GitHub Pages deployment, only the static client-side files are required.
 
 ```
 dungeon_general_store/

@@ -2,6 +2,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2024-12-28',
   
+  // Using Nuxt 4 compatibility version as per project requirements
+  // This enables new features and patterns that will be standard in Nuxt 4
   future: {
     compatibilityVersion: 4,
   },
@@ -12,7 +14,7 @@ export default defineNuxtConfig({
   // TypeScript configuration
   typescript: {
     strict: true,
-    typeCheck: false, // Disable during build (can be enabled during development)
+    typeCheck: false, // Disabled during build to avoid conflicts with vitest's vite version
   },
 
   // Development tools

@@ -11,7 +11,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - **Framework**: Nuxt 4 (Vue 3-based full-stack framework)
 - **Game Engine**: Phaser 3 (for web game rendering and game logic)
 - **Local Storage**: IndexedDB/LocalStorage (primary game state storage)
-- **Optional Cloud Sync**: Firebase Firestore (optional cloud backup and future multiplayer state sync)
+- **Optional Cloud Sync**: Firebase Firestore or user-provided backend (optional cloud backup and future multiplayer state sync - BYOB: Bring Your Own Backend)
 - **PWA**: PWABuilder via @vite-pwa/nuxt (Progressive Web App capabilities for offline-first experience)
 - **Language**: TypeScript (strict mode)
 - **Package Manager**: npm
@@ -39,7 +39,8 @@ Dungeon General Store is a minimalist, input-driven management game where player
   - Type checking (TypeScript)
   - Build verification
   - Security scanning (CodeQL)
-- [ ] Configure proper GitHub token permissions
+  - GitHub Pages deployment (static site generation)
+- [ ] Configure proper GitHub token permissions for Pages deployment
 - [ ] Add dependency installation with --legacy-peer-deps if needed
 
 ### Phase 2: Core Infrastructure (Week 2)
@@ -65,10 +66,12 @@ Dungeon General Store is a minimalist, input-driven management game where player
 #### 2.3 Optional Firebase Integration (Future Multiplayer)
 - [ ] Install Firebase SDK (v11+) as optional dependency
 - [ ] Create Firebase client plugin (lazy-loaded)
-- [ ] Set up environment variables template (.env.example)
+- [ ] Set up environment variables template (.env.example) for user configuration
+- [ ] Document how users can bring their own Firebase/backend credentials
 - [ ] Configure optional Firestore sync layer
 - [ ] Design state synchronization strategy for future multiplayer
-- [ ] Implement cloud backup feature (opt-in)
+- [ ] Implement cloud backup feature (opt-in, user-configured)
+- [ ] Note: Firebase/Firestore sync is implemented as a final step, not a core requirement
 
 #### 2.4 PWA Configuration
 - [ ] Install and configure @vite-pwa/nuxt
@@ -212,12 +215,14 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create contributing guide
 
 #### 8.3 Deployment
-- [ ] Set up static hosting (Netlify, Vercel, or GitHub Pages)
-- [ ] Configure production environment
+- [ ] Set up GitHub Pages deployment (primary deployment target)
+- [ ] Configure Nuxt for static site generation (SSG)
+- [ ] Set up GitHub Actions workflow for automatic deployment
+- [ ] Configure proper base URL for GitHub Pages
 - [ ] Set up monitoring and analytics (privacy-respecting)
-- [ ] Create deployment pipeline
 - [ ] Perform final security audit
-- [ ] Configure optional Firebase backend for cloud features
+- [ ] As a final optional step: Configure user-provided Firebase backend for cloud features
+- [ ] Document how users can set up their own Firebase/backend credentials (BYOB)
 
 ## Project Structure
 
@@ -487,19 +492,21 @@ interface GameData {
 }
 ```
 
-### Firebase/Firestore (Optional)
+### Firebase/Firestore (Optional - User Configured)
 
-Firebase is **optional** and used only for:
+Firebase is **optional** and **user-configured** (BYOB - Bring Your Own Backend). Users provide their own Firebase credentials for:
 - Cloud backup (opt-in)
 - Future multiplayer state synchronization
 - Cross-device save sync
 
+**Important**: Firebase/Firestore sync is implemented as a **final optional step**, not a core requirement. The game must be fully functional without any backend configuration.
+
 #### Data Structure
 
-When cloud sync is enabled, mirror local structure:
+When cloud sync is enabled by the user with their own Firebase credentials, mirror local structure:
 
 ```typescript
-// Firestore structure (when sync enabled)
+// Firestore structure (when sync enabled with user's Firebase)
 players/{playerId}/
   - gameState: GameData
   - lastSync: timestamp
@@ -508,9 +515,10 @@ players/{playerId}/
 
 #### Security
 
-- Never expose Firebase config secrets in client code
+- Never expose Firebase config secrets in client code (users provide their own)
 - Use environment variables for sensitive data
-- Implement proper Firestore security rules:
+- Users must configure their own Firebase project and security rules
+- Implement proper Firestore security rules (example for users):
   ```javascript
   rules_version = '2';
   service cloud.firestore {
@@ -521,6 +529,7 @@ players/{playerId}/
     }
   }
   ```
+- Provide clear documentation for users to set up their own Firebase project
 
 #### Optional Cloud Sync
 
@@ -989,20 +998,70 @@ npm run test:ui                  # Run tests with UI
 npm run typecheck                # Type check TypeScript
 ```
 
+### GitHub Pages Deployment
+
+This project is designed to be deployed to GitHub Pages. Follow these steps:
+
+1. **Configure Nuxt for Static Site Generation**:
+   - Add `ssr: false` and `target: 'static'` to `nuxt.config.ts`
+   - Configure proper base URL if deploying to a repository path (e.g., `https://username.github.io/dungeon_general_store/`)
+
+2. **Build for Production**:
+   ```bash
+   npm run generate  # Generate static files
+   ```
+
+3. **Deploy via GitHub Actions**:
+   - A GitHub Actions workflow should be set up to automatically build and deploy to GitHub Pages
+   - The workflow should trigger on pushes to the main branch
+   - Static files from `.output/public` should be deployed to the `gh-pages` branch
+
+4. **Manual Deployment** (alternative):
+   ```bash
+   npm run generate
+   # Then push the .output/public directory to gh-pages branch
+   ```
+
+5. **GitHub Pages Configuration**:
+   - In repository settings, set GitHub Pages source to `gh-pages` branch
+   - Ensure GitHub Actions has permissions to deploy to Pages
+
+### Firebase Setup (Optional - Final Step)
+
+Firebase/Firestore sync is completely optional and configured by users who want cloud backup or multiplayer features:
+
+1. **User Creates Firebase Project**:
+   - Users must create their own Firebase project at https://console.firebase.google.com
+   - Users obtain their own Firebase configuration credentials
+
+2. **Configuration**:
+   - Copy `.env.example` to `.env.local`
+   - Add user's own Firebase credentials to environment variables
+   - Firebase SDK will only load if credentials are provided
+
+3. **Security Rules**:
+   - Users must configure Firestore security rules in their Firebase project
+   - Example rules are provided in the documentation
+
+**Note**: The game is fully functional without Firebase. This is a BYOB (Bring Your Own Backend) approach where each user provides their own cloud storage solution if desired.
+
 ## Resources
 
 ### Documentation
 - [Nuxt 4 Documentation](https://nuxt.com/)
 - [Phaser 3 Documentation](https://photonstorm.github.io/phaser3-docs/)
-- [Firebase Documentation](https://firebase.google.com/docs)
+- [Firebase Documentation](https://firebase.google.com/docs) (for users who want to set up their own backend)
 - [Vue 3 Documentation](https://vuejs.org/)
 - [TypeScript Documentation](https://www.typescriptlang.org/docs/)
+- [GitHub Pages Documentation](https://docs.github.com/en/pages)
+- [Nuxt Static Site Generation](https://nuxt.com/docs/getting-started/deployment#static-hosting)
 
 ### Tutorials
 - [Nuxt 4 Tutorial](https://nuxt.com/docs/getting-started/introduction)
 - [Phaser 3 Examples](https://phaser.io/examples)
-- [Firebase Firestore Tutorial](https://firebase.google.com/docs/firestore)
+- [Firebase Firestore Tutorial](https://firebase.google.com/docs/firestore) (for users setting up their own backend)
 - [PWA Guide](https://web.dev/learn/pwa/)
+- [Deploying Nuxt to GitHub Pages](https://nuxt.com/deploy/github-pages)
 
 ### Community
 - [Nuxt Discord](https://discord.com/invite/nuxt)

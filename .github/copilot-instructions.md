@@ -21,6 +21,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 1: Project Foundation (Week 1)
 
 #### 1.1 Initial Setup
+
 - [ ] Initialize Nuxt 4 project with TypeScript
 - [ ] Configure package.json with all required dependencies
 - [ ] Configure Nuxt for static site generation (for GitHub Pages deployment)
@@ -28,12 +29,14 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create basic project structure (app/, public/ directories; server/ optional for custom backends)
 
 #### 1.2 Development Tools
+
 - [ ] Configure ESLint with Nuxt recommended settings
 - [ ] Set up Prettier for code formatting
 - [ ] Configure TypeScript with strict mode
 - [ ] Set up Vitest for unit testing with happy-dom
 
 #### 1.3 CI/CD Pipeline
+
 - [ ] Create GitHub Actions workflow for:
   - Automated linting (ESLint)
   - Automated testing (Vitest)
@@ -47,12 +50,14 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 2: Core Infrastructure (Week 2)
 
 #### 2.1 Styling & UI Framework
+
 - [ ] Install and configure Tailwind CSS
 - [ ] Create custom color palette (dungeon theme)
 - [ ] Set up base CSS with theme variables
 - [ ] Create layout components
 
 #### 2.2 Local Storage System
+
 - [ ] Set up IndexedDB wrapper/abstraction layer
 - [ ] Design game state schema with serialization support
 - [ ] Create local storage utilities with versioning
@@ -65,6 +70,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
   - runs (dungeon run records)
 
 #### 2.3 Optional Firebase Integration (Future Multiplayer)
+
 - [ ] Install Firebase SDK (v11+) as optional dependency
 - [ ] Create Firebase client plugin (lazy-loaded)
 - [ ] Set up environment variables template (.env.example) for user configuration
@@ -75,6 +81,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Note: Firebase/Firestore sync is implemented as a final step, not a core requirement
 
 #### 2.4 PWA Configuration
+
 - [ ] Install and configure @vite-pwa/nuxt
 - [ ] Create PWA manifest with app metadata
 - [ ] Configure service worker for offline support
@@ -84,6 +91,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 3: Game Engine Setup (Week 3)
 
 #### 3.1 Phaser Integration
+
 - [ ] Install Phaser 3 (v3.87+)
 - [ ] Create Phaser game configuration (app/game/config.ts)
 - [ ] Set up game container component
@@ -91,6 +99,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Configure game canvas sizing and responsiveness
 
 #### 3.2 Core Game Scenes
+
 - [ ] Create MainScene (game entry point)
 - [ ] Create ShopScene (shop management interface)
 - [ ] Create DMControlScene (dungeon master panel)
@@ -98,6 +107,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Set up scene transitions and state passing
 
 #### 3.3 Game Asset Management
+
 - [ ] Set up asset loading system
 - [ ] Create asset directory structure
 - [ ] Implement lazy loading for game assets
@@ -106,6 +116,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 4: Game Mechanics - Shop System (Week 4-5)
 
 #### 4.1 Inventory System
+
 - [ ] Design item type system (weapons, armor, potions, etc.)
 - [ ] Create Item class/interface with properties
 - [ ] Implement inventory storage (IndexedDB + local state)
@@ -114,6 +125,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Add item sorting and filtering
 
 #### 4.2 Trading Mechanics
+
 - [ ] Implement buy/sell system
 - [ ] Create pricing algorithm (supply/demand)
 - [ ] Add bartering/negotiation mechanics
@@ -121,6 +133,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create shop UI for customer interactions
 
 #### 4.3 Shop Management
+
 - [ ] Implement shop reputation system
 - [ ] Track customer relationships
 - [ ] Add shop upgrade system
@@ -130,6 +143,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 5: Game Mechanics - Delver System (Week 6-7)
 
 #### 5.1 NPC Delvers
+
 - [ ] Create Delver class with traits and stats
 - [ ] Implement NPC generation system
 - [ ] Add personality/behavior patterns
@@ -137,6 +151,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Track delver relationships with shop
 
 #### 5.2 Quest System
+
 - [ ] Design quest structure and types
 - [ ] Create quest generation system
 - [ ] Implement quest progression tracking
@@ -144,6 +159,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Build quest log UI
 
 #### 5.3 Delver Progression
+
 - [ ] Track delver experience and levels
 - [ ] Implement equipment effects on success rates
 - [ ] Add permadeath/failure consequences
@@ -152,6 +168,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 6: Game Mechanics - DM Mode (Week 8-9)
 
 #### 6.1 Spawn Control System
+
 - [ ] Create monster/encounter database
 - [ ] Build spawn configuration interface
 - [ ] Implement difficulty scaling
@@ -159,6 +176,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create DM control panel UI
 
 #### 6.2 Consequence System
+
 - [ ] Track DM choices and their effects
 - [ ] Implement karma/balance system
 - [ ] Add story event triggers
@@ -166,6 +184,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Build moral choice system
 
 #### 6.3 Secret DM Features
+
 - [ ] Implement hidden influence mechanics
 - [ ] Add subtle UI hints (not revealing DM role)
 - [ ] Create achievement system for DM choices
@@ -174,6 +193,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 7: Game Loop & Polish (Week 10-11)
 
 #### 7.1 Core Game Loop
+
 - [ ] Implement day/night cycle or time system
 - [ ] Add customer visit patterns
 - [ ] Create event system (random/scheduled)
@@ -183,6 +203,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Design state snapshot system for future multiplayer sync
 
 #### 7.2 UI/UX Polish
+
 - [ ] Create consistent UI theme
 - [ ] Add animations and transitions
 - [ ] Implement sound effects (optional)
@@ -190,6 +211,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create tutorial/onboarding flow
 
 #### 7.3 Optimization
+
 - [ ] Optimize IndexedDB queries
 - [ ] Implement proper caching strategies for game assets
 - [ ] Add code splitting for routes
@@ -200,6 +222,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 ### Phase 8: Testing & Deployment (Week 12)
 
 #### 8.1 Testing
+
 - [ ] Write unit tests for game logic
 - [ ] Create component tests for UI
 - [ ] Add integration tests for local storage
@@ -209,6 +232,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Verify optional cloud sync works correctly
 
 #### 8.2 Documentation
+
 - [ ] Write comprehensive README
 - [ ] Create setup guide (SETUP.md)
 - [ ] Document game mechanics
@@ -216,6 +240,7 @@ Dungeon General Store is a minimalist, input-driven management game where player
 - [ ] Create contributing guide
 
 #### 8.3 Deployment
+
 - [ ] Set up GitHub Pages deployment (primary deployment target)
 - [ ] Configure Nuxt for static site generation (SSG)
 - [ ] Set up GitHub Actions workflow for automatic deployment
@@ -348,6 +373,7 @@ While multiplayer is a future feature, design decisions should facilitate its ev
 - **Timestamping**: Include timestamps on all state changes for ordering
 
 Example state structure:
+
 ```typescript
 interface GameState {
   version: number
@@ -358,8 +384,8 @@ interface GameState {
     delvers: Record<string, Delver>
     items: Record<string, Item>
   }
-  events: GameEvent[]  // For event sourcing
-  checksum?: string    // For state validation
+  events: GameEvent[] // For event sourcing
+  checksum?: string // For state validation
 }
 ```
 
@@ -371,10 +397,11 @@ interface GameState {
 - Keep game logic separate from Vue components
 - Use events to communicate between Phaser and Vue
 - Example event pattern:
+
   ```typescript
   // In Phaser scene
   this.events.emit('item-purchased', itemData)
-  
+
   // In Vue component
   gameInstance.scene.getScene('ShopScene').events.on('item-purchased', handlePurchase)
   ```
@@ -392,7 +419,7 @@ interface GameState {
   export function useShopInventory() {
     const items = ref<Item[]>([])
     const loading = ref(false)
-    
+
     async function loadInventory() {
       loading.value = true
       // Load from IndexedDB
@@ -400,31 +427,31 @@ interface GameState {
       items.value = stored || []
       loading.value = false
     }
-    
+
     async function saveInventory() {
       // Save to IndexedDB
       await db.set('inventory', items.value)
-      
+
       // Optionally sync to cloud if enabled
       if (isCloudSyncEnabled()) {
         await syncToCloud(items.value)
       }
     }
-    
+
     // Create state snapshot for multiplayer sync
     function createSnapshot() {
       return {
         timestamp: Date.now(),
-        items: JSON.parse(JSON.stringify(items.value))
+        items: JSON.parse(JSON.stringify(items.value)),
       }
     }
-    
-    return { 
-      items, 
-      loading, 
-      loadInventory, 
+
+    return {
+      items,
+      loading,
+      loadInventory,
       saveInventory,
-      createSnapshot 
+      createSnapshot,
     }
   }
   ```
@@ -454,11 +481,11 @@ interface StorageLayer {
 // Example implementation
 class GameStorage implements StorageLayer {
   private db: IDBDatabase
-  
+
   async get<T>(key: string): Promise<T | null> {
     // IndexedDB get operation
   }
-  
+
   async set<T>(key: string, value: T): Promise<void> {
     // IndexedDB set operation with versioning
   }
@@ -479,14 +506,17 @@ interface GameData {
     reputation: number
     lastSaved: number
   }
-  delvers: Record<string, {
-    id: string
-    name: string
-    stats: Stats
-    equipment: string[]
-    history: RunRecord[]
-    relationship: number
-  }>
+  delvers: Record<
+    string,
+    {
+      id: string
+      name: string
+      stats: Stats
+      equipment: string[]
+      history: RunRecord[]
+      relationship: number
+    }
+  >
   metadata: {
     version: number
     playerId: string
@@ -498,6 +528,7 @@ interface GameData {
 ### Firebase/Firestore (Optional - User Configured)
 
 Firebase is **optional** and **user-configured** (BYOB - Bring Your Own Backend). Users provide their own Firebase credentials for:
+
 - Cloud backup (opt-in)
 - Future multiplayer state synchronization
 - Cross-device save sync
@@ -544,13 +575,14 @@ players/{playerId}/
 - Implement conflict resolution for sync conflicts
 
 Example sync pattern:
-```typescript
+
+````typescript
 // Only sync if explicitly enabled
 async function syncState(localState: GameState) {
   if (!isCloudSyncEnabled() || !isOnline()) {
     return // Skip sync, game continues normally
   }
-  
+
   try {
     const cloudState = await fetchCloudState()
     const merged = mergeStates(localState, cloudState)
@@ -563,7 +595,7 @@ async function syncState(localState: GameState) {
 
 ### PWA Best Practices
 
-1. **Offline-First by Design**: 
+1. **Offline-First by Design**:
    - The game IS an offline application that happens to run in a browser
    - All core features work without network connectivity
    - Network is only used for optional cloud sync
@@ -571,20 +603,20 @@ async function syncState(localState: GameState) {
    - Store ALL game state locally (IndexedDB)
    - No "offline mode" vs "online mode" - it's always offline-capable
 
-2. **Install Prompts**: 
+2. **Install Prompts**:
    - Implement smart install prompts
    - Show after user engagement (e.g., after first session)
    - Make dismissible and non-intrusive
    - Emphasize offline playability in install prompt
 
-3. **Service Worker**: 
+3. **Service Worker**:
    - Use Nuxt PWA module for service worker generation
    - Configure aggressive caching for all game assets
    - Use Cache-First strategy for game resources
    - Implement background sync only for optional cloud features
    - Handle failed syncs gracefully
 
-4. **App Manifest**: 
+4. **App Manifest**:
    - Configure proper icons (192x192, 512x512)
    - Set theme colors matching game aesthetic
    - Use standalone display mode
@@ -618,22 +650,23 @@ While multiplayer is not part of the current implementation, the architecture sh
      data: any
      version: number
    }
-   
+
    // Store events for replay/sync
    class EventStore {
      private events: GameEvent[] = []
-     
+
      addEvent(event: GameEvent) {
        this.events.push(event)
      }
-     
+
      replayEvents(fromTimestamp: number): GameState {
        // Rebuild state from events
      }
    }
-   ```
+````
 
 4. **State Diffing and Patching**:
+
    ```typescript
    interface StateDiff {
      timestamp: number
@@ -643,11 +676,11 @@ While multiplayer is not part of the current implementation, the architecture sh
        newValue: any
      }[]
    }
-   
+
    function createDiff(oldState: GameState, newState: GameState): StateDiff {
      // Generate minimal diff
    }
-   
+
    function applyPatch(state: GameState, diff: StateDiff): GameState {
      // Apply diff to state
    }
@@ -660,13 +693,14 @@ While multiplayer is not part of the current implementation, the architecture sh
    - Separate player-specific and shared state
 
 6. **State Validation**:
+
    ```typescript
    interface StateChecksum {
      version: number
      timestamp: number
      hash: string
    }
-   
+
    function validateState(state: GameState, checksum: StateChecksum): boolean {
      // Verify state integrity
    }
@@ -692,21 +726,21 @@ interface SyncableGameState {
     playerId: string
     sessionId: string
   }
-  
+
   // Player-specific state (no conflicts)
   player: {
     shop: Shop
     inventory: Item[]
     decisions: DMDecision[]
   }
-  
+
   // Potentially shared state
   world: {
     delvers: Record<string, Delver>
     economy: EconomyState
     events: WorldEvent[]
   }
-  
+
   // Event log for replay
   eventLog: GameEvent[]
 }
@@ -714,22 +748,22 @@ interface SyncableGameState {
 
 ### Testing
 
-1. **Unit Tests**: 
+1. **Unit Tests**:
    - Test composables and utility functions
    - Mock Firestore and Phaser dependencies
    - Focus on business logic
 
-2. **Component Tests**: 
+2. **Component Tests**:
    - Test Vue components with Vitest
    - Use happy-dom for DOM testing
    - Test user interactions
 
-3. **E2E Tests**: 
+3. **E2E Tests**:
    - Test critical user flows
    - Verify save/load functionality
    - Test PWA installation
 
-4. **Game Logic Tests**: 
+4. **Game Logic Tests**:
    - Test game mechanics separately from rendering
    - Verify trading calculations
    - Test spawn system logic
@@ -737,6 +771,7 @@ interface SyncableGameState {
 ### Code Style
 
 1. **Formatting**: Use Prettier with these settings:
+
    ```json
    {
      "semi": false,
@@ -764,7 +799,7 @@ interface SyncableGameState {
 
 ### Git Workflow
 
-1. **Commits**: 
+1. **Commits**:
    - Write clear, descriptive commit messages
    - Use conventional commit format:
      - `feat:` for new features
@@ -774,12 +809,12 @@ interface SyncableGameState {
      - `test:` for adding tests
      - `chore:` for maintenance
 
-2. **Branches**: 
+2. **Branches**:
    - Use feature branches for new functionality
    - Name format: `feature/shop-inventory`, `fix/trading-bug`
    - Keep branches short-lived
 
-3. **PRs**: 
+3. **PRs**:
    - Include description of changes and testing done
    - Reference related issues
    - Request review before merging
@@ -789,6 +824,7 @@ interface SyncableGameState {
 ### Shop Management
 
 #### Inventory System
+
 - Keep inventory system flexible for various item types
 - Support item stacking for consumables
 - Implement rarity tiers (common, rare, legendary)
@@ -796,6 +832,7 @@ interface SyncableGameState {
 - Track item provenance (who sold it, where it came from)
 
 #### Trading Mechanics
+
 - Implement dynamic pricing based on supply/demand
 - Add reputation-based discounts
 - Support bartering and negotiation mini-games
@@ -803,6 +840,7 @@ interface SyncableGameState {
 - Add special deals and limited-time offers
 
 #### Shop Upgrades
+
 - Expandable inventory space
 - Better display cases (affects customer interest)
 - Security upgrades (reduces theft risk)
@@ -812,6 +850,7 @@ interface SyncableGameState {
 ### Dungeon Master Mode
 
 #### Spawn Control
+
 - Secret DM controls should feel powerful but balanced
 - Provide difficulty presets (easy, medium, hard)
 - Allow custom encounter creation
@@ -819,6 +858,7 @@ interface SyncableGameState {
 - Track historical spawn decisions
 
 #### Balance System
+
 - Implement karma system for DM choices
 - Too easy: reduces shop reputation (word spreads)
 - Too hard: causes delver deaths, guilt effects
@@ -826,6 +866,7 @@ interface SyncableGameState {
 - Add achievement system for balanced play
 
 #### Consequence Tracking
+
 - Track consequences of DM choices
 - Show indirect effects on town economy
 - Affect delver trust and relationships
@@ -834,6 +875,7 @@ interface SyncableGameState {
 ### Delver System
 
 #### NPC Generation
+
 - Create diverse delver personalities
 - Assign random traits affecting behavior
 - Generate backstories (simple templates)
@@ -841,6 +883,7 @@ interface SyncableGameState {
 - Implement relationship memory
 
 #### Traits & Stats
+
 - Strength, Dexterity, Constitution, etc.
 - Personality traits (brave, cautious, greedy)
 - Equipment preferences
@@ -848,6 +891,7 @@ interface SyncableGameState {
 - Relationship level with shopkeeper
 
 #### Quest Outcomes
+
 - NPCs should have persistent traits and histories
 - Quest outcomes should impact shop dynamics
 - Successful delvers bring more gold and reputation
@@ -855,6 +899,7 @@ interface SyncableGameState {
 - Death/failure should have meaningful consequences
 
 #### Permadeath System
+
 - Implement permadeath for realism and weight
 - Create memorial system for fallen delvers
 - Affects town morale and shop traffic
@@ -864,6 +909,7 @@ interface SyncableGameState {
 ## Dependencies Management
 
 ### Core Dependencies
+
 ```json
 {
   "dependencies": {
@@ -881,6 +927,7 @@ interface SyncableGameState {
 ```
 
 ### Development Dependencies
+
 ```json
 {
   "devDependencies": {
@@ -897,6 +944,7 @@ interface SyncableGameState {
 ```
 
 ### Dependency Notes
+
 - Keep dependencies up to date
 - Prefer well-maintained, popular packages
 - Document why each dependency is needed
@@ -906,6 +954,7 @@ interface SyncableGameState {
 ## Performance Considerations
 
 ### Asset Loading
+
 - Lazy load Phaser and heavy game assets
 - Use dynamic imports for code splitting
 - Implement progressive image loading
@@ -913,6 +962,7 @@ interface SyncableGameState {
 - Load audio on demand
 
 ### Optimization Strategies
+
 - Implement loading states for async operations
 - Use virtual scrolling for long lists
 - Debounce frequent operations (search, filters)
@@ -920,6 +970,7 @@ interface SyncableGameState {
 - Minimize re-renders with proper Vue reactivity
 
 ### Mobile Optimization
+
 - Test on actual mobile devices
 - Optimize touch targets (min 44x44px)
 - Reduce bundle size for faster loading
@@ -929,6 +980,7 @@ interface SyncableGameState {
 ## Accessibility
 
 ### Keyboard Navigation
+
 - Provide keyboard navigation for all UI
 - Support tab navigation
 - Implement keyboard shortcuts for actions
@@ -936,6 +988,7 @@ interface SyncableGameState {
 - Support Escape key to close modals
 
 ### Semantic HTML
+
 - Use semantic HTML elements
 - Proper heading hierarchy (h1, h2, h3)
 - Use button elements for clickable actions
@@ -943,6 +996,7 @@ interface SyncableGameState {
 - Add alt text for images
 
 ### ARIA Support
+
 - Include ARIA labels where appropriate
 - Use ARIA live regions for dynamic content
 - Add ARIA descriptions for complex interactions
@@ -950,6 +1004,7 @@ interface SyncableGameState {
 - Test with screen reader software
 
 ### Visual Accessibility
+
 - Maintain sufficient color contrast (WCAG AA)
 - Don't rely solely on color to convey information
 - Provide text alternatives for icons
@@ -959,6 +1014,7 @@ interface SyncableGameState {
 ## When Working with Copilot
 
 ### Feature Requests
+
 1. Be explicit about game mechanics when requesting features
 2. Specify if changes affect game logic, UI, or both
 3. Mention if local storage schema changes are needed
@@ -967,6 +1023,7 @@ interface SyncableGameState {
 6. Clarify if optional cloud sync is involved
 
 ### Code Generation
+
 - Request type-safe code with proper TypeScript types
 - Ask for comprehensive error handling
 - Request unit tests for business logic
@@ -974,6 +1031,7 @@ interface SyncableGameState {
 - Mention mobile compatibility needs
 
 ### Debugging
+
 - Provide relevant error messages and stack traces
 - Describe expected vs actual behavior
 - Mention what you've already tried
@@ -983,6 +1041,7 @@ interface SyncableGameState {
 ## Quick Start Commands
 
 ### Development
+
 ```bash
 npm install --legacy-peer-deps  # Install dependencies
 npm run dev                      # Start dev server
@@ -991,6 +1050,7 @@ npm run preview                  # Preview production build
 ```
 
 ### Quality Assurance
+
 ```bash
 npm run lint                     # Run ESLint
 npm run lint:fix                 # Fix ESLint issues
@@ -1010,6 +1070,7 @@ This project is designed to be deployed to GitHub Pages. Follow these steps:
    - Configure proper base URL if deploying to a repository path (e.g., `https://username.github.io/dungeon_general_store/`)
 
 2. **Build for Production**:
+
    ```bash
    npm run generate  # Generate static files
    ```
@@ -1020,6 +1081,7 @@ This project is designed to be deployed to GitHub Pages. Follow these steps:
    - Static files from `.output/public` should be deployed to the `gh-pages` branch
 
 4. **Manual Deployment** (alternative):
+
    ```bash
    npm run generate
    # Then push the .output/public directory to gh-pages branch
@@ -1051,6 +1113,7 @@ Firebase/Firestore sync is completely optional and configured by users who want 
 ## Resources
 
 ### Documentation
+
 - [Nuxt 4 Documentation](https://nuxt.com/)
 - [Phaser 3 Documentation](https://photonstorm.github.io/phaser3-docs/)
 - [Firebase Documentation](https://firebase.google.com/docs) (for users who want to set up their own backend)
@@ -1060,6 +1123,7 @@ Firebase/Firestore sync is completely optional and configured by users who want 
 - [Nuxt Static Site Generation](https://nuxt.com/docs/getting-started/deployment#static-hosting)
 
 ### Tutorials
+
 - [Nuxt 4 Tutorial](https://nuxt.com/docs/getting-started/introduction)
 - [Phaser 3 Examples](https://phaser.io/examples)
 - [Firebase Firestore Tutorial](https://firebase.google.com/docs/firestore) (for users setting up their own backend)
@@ -1067,6 +1131,7 @@ Firebase/Firestore sync is completely optional and configured by users who want 
 - [Deploying Nuxt to GitHub Pages](https://nuxt.com/deploy/github-pages)
 
 ### Community
+
 - [Nuxt Discord](https://discord.com/invite/nuxt)
 - [Phaser Discord](https://discord.gg/phaser)
 - [Vue Discord](https://discord.com/invite/vue)

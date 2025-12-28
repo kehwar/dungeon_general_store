@@ -7,6 +7,9 @@ export default withNuxt(
     rules: {
       // Customize rules as needed
       'vue/multi-word-component-names': 'off',
+      // Prettier integration - disable formatting rules that conflict with Prettier
+      'vue/max-attributes-per-line': 'off',
+      'vue/singleline-html-element-content-newline': 'off',
     },
   }
 )

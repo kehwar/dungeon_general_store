@@ -415,6 +415,7 @@ interface GameState {
 - Implement state versioning for migrations
 - Add state snapshot/restore capabilities for save/load
 - Example composable pattern:
+
   ```typescript
   export function useShopInventory() {
     const items = ref<Item[]>([])
